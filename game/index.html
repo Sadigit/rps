@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Rock Paper Scessor</title>
+	
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+		}
+		.me,.comp{
+			margin-top: 70px;
+
+
+		}
+		
+		.me img,.comp img{
+			width: 46%;
+			height: 35%;
+
+			border: 1px solid black;
+			border-radius: 19px;
+			box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.10),15px 15px 15px rgba(0, 0, 0, 0.20);
+		}
+		.board{
+			text-align: center;
+			border-radius: 14px;
+			position: absolute;
+			left: 36%;
+			top: 40%;
+			width: 28%;
+			height: 80px;
+			border: 1px solid black;
+			box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.30),5px 0px 5px rgba(0, 0, 0, 0.20);
+		}
+		@media(max-width: 375px){
+			.me img,.comp img{
+				height: 29%;
+			}
+			.border{
+				
+			}
+		}
+		@media(max-width: 375px){
+
+		}
+		.me img{
+			position: absolute;
+			left: 2%;
+		}
+		.comp img{
+			transform: rotateY(180deg);
+			position: absolute;
+			right: 2%;
+		}
+		.game{
+
+			display: inline-flex;
+			margin: auto;
+
+			width: 100%;
+		}
+		.board{
+			text-align: center;
+			border-radius: 14px;
+			position: absolute;
+			left: 26%;
+			top: 52%;
+			width: 48%;
+			height: 80px;
+			border: 1px solid black;
+			box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.30),5px 0px 5px rgba(0, 0, 0, 0.20);
+		}
+		.btns{
+			height: 68px;
+			width: 100%;
+			display: inline-flex;
+			flex-wrap: wrap;
+			position: absolute;
+			top: 67%;
+			left: 0%;
+			justify-content: space-between;
+
+		}
+		.btns button{
+			
+			width: 30%;
+			height: 55px;
+			color: white;
+			border: 1px solid tomato;
+			background: tomato;
+			font-size: 21px;
+			border-radius: 16px;
+			box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.30);
+
+
+
+
+		}
+		
+		
+		h3{
+			font-size: 28px;
+		}
+		footer{
+			color: white;
+			width: 100%;
+			position: absolute;
+			bottom: 0px;
+			height: 50px;
+			text-align: center;
+			font-size: 34px;
+			font-family: monospace;
+			background: rgb(15, 15, 15);
+		}
+	</style>
+
+</head>
+<body>
+<div class="game">
+	<div class="me">
+		<img src="start.png">
+	</div>
+
+	<div class="board"></div>
+
+	<div class="comp">
+		<img  src="rock.png">
+	
+	</div>
+
+</div>
+<div class="btns">
+	<button onclick="rock()";>Rock</button>
+	<button onclick="paper();">Paper</button>
+	<button onclick="scessor();">Scessor</button>
+</div>
+<footer>Made by SADI</footer>
+<script type="text/javascript">
+	let my_move ;
+	let c_move;
+	function rock(){
+		my_move='rock';
+		let me = document.querySelector('.me').innerHTML="<img src='rock.png'>"
+		
+		
+		computer();
+		
+	}
+	function paper(){
+		my_move='paper';
+		let me = document.querySelector('.me').innerHTML="<img src='paper.png'>"
+		computer();
+	}
+	function scessor() {
+		my_move="scessor";
+		let me = document.querySelector('.me').innerHTML="<img src='scessor.png'>"
+		computer();
+	}
+	function computer(){
+		let board = document.querySelector('.board');
+		let com = document.querySelector('.comp');
+		let ran = Math.floor(Math.random()*3+1);
+		if (ran == 1){
+			c_move="rock";
+			com.innerHTML="<img src='rock.png'>"
+		}
+		else if (ran == 2){
+			c_move="paper";
+			com.innerHTML="<img src='paper.png'>"
+		}
+		else if (ran == 3){
+			c_move = "scessor";
+			com.innerHTML="<img src='scessor.png'>"
+		}
+		////draw///////////
+		if (c_move == "rock" && my_move == "rock"){
+			board.innerHTML="<h3>Draw</h3>";
+		}
+		else if(c_move == 'paper' && my_move == "paper"){
+			board.innerHTML="<h3>Draw</h3>";
+		}
+		else if(c_move == "scessor" && my_move == "scessor"){
+			board.innerHTML = "<h3>Draw</h3>"
+		}
+		///// win ////
+		if (c_move == "rock" && my_move == "paper"){
+			board.innerHTML = "<h3>Won</h3>"
+
+		}
+		else if(c_move == "paper" && my_move == "scessor"){
+			board.innerHTML = "<h3>Won</h3>"
+
+		}
+		else if( c_move == "scessor" && my_move == "rock"){
+			board.innerHTML = "<h3>Won</h3>"
+
+		}
+		///// lose /////
+		if (my_move == "rock" && c_move == "paper"){
+			board.innerHTML = "<h3>Lose</h3>"
+
+		}
+		else if(my_move == "paper" && c_move == "scessor"){
+			board.innerHTML = "<h3>Lose</h3>"
+
+		}
+		else if( my_move == "scessor" && c_move == "rock"){
+			board.innerHTML = "<h3>Lose</h3>"
+
+		}
+		setTimeout(()=>{
+			board.innerHTML="<h3></h3>"
+		let me = document.querySelector('.me').innerHTML="<img src='start.png'>"
+
+		},1800)
+	}
+</script>
+</body>
+</html>
