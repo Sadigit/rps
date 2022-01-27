@@ -19,7 +19,7 @@
 		
 		.me img,.comp img{
 			width: 46%;
-			height: 40%;
+			height: 35%;
 
 			border: 1px solid black;
 			border-radius: 19px;
@@ -30,7 +30,7 @@
 			border-radius: 14px;
 			position: absolute;
 			left: 36%;
-			top: 42%;
+			top: 40%;
 			width: 28%;
 			height: 80px;
 			border: 1px solid black;
@@ -71,6 +71,7 @@
 			top: 52%;
 			width: 48%;
 			height: 80px;
+			font-size: 24px;
 			border: 1px solid black;
 			box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.30),5px 0px 5px rgba(0, 0, 0, 0.20);
 		}
@@ -80,7 +81,7 @@
 			display: inline-flex;
 			flex-wrap: wrap;
 			position: absolute;
-			top: 69%;
+			top: 67%;
 			left: 0%;
 			justify-content: space-between;
 
@@ -125,7 +126,7 @@
 		<img src="start.png">
 	</div>
 
-	<div class="board"></div>
+	<div class="board">0 - 0</div>
 
 	<div class="comp">
 		<img  src="rock.png">
@@ -140,6 +141,8 @@
 </div>
 <footer>Made by SADI</footer>
 <script type="text/javascript">
+	let my_score = 0;
+	let c_score = 0
 	let my_move ;
 	let c_move;
 	function rock(){
@@ -178,45 +181,58 @@
 		}
 		////draw///////////
 		if (c_move == "rock" && my_move == "rock"){
-			board.innerHTML="<h3>Draw</h3>";
+			board.innerHTML = my_score+" - "+c_score+"<br>draw";
+
 		}
 		else if(c_move == 'paper' && my_move == "paper"){
-			board.innerHTML="<h3>Draw</h3>";
+			board.innerHTML = my_score+" - "+c_score+"<br>draw";
+
 		}
 		else if(c_move == "scessor" && my_move == "scessor"){
-			board.innerHTML = "<h3>Draw</h3>"
+			board.innerHTML = my_score+" - "+c_score+"<br>draw";
+
 		}
 		///// win ////
 		if (c_move == "rock" && my_move == "paper"){
-			board.innerHTML = "<h3>Won</h3>"
+			my_score+=1;
+			board.innerHTML = my_score+" - "+c_score+"<br>Win";
+
 
 		}
 		else if(c_move == "paper" && my_move == "scessor"){
-			board.innerHTML = "<h3>Won</h3>"
+			my_score+=1;
+
+			board.innerHTML = my_score+" - "+c_score+"<br>Win";
+
 
 		}
 		else if( c_move == "scessor" && my_move == "rock"){
-			board.innerHTML = "<h3>Won</h3>"
+			my_score+=1;
+
+			board.innerHTML = my_score+" - "+c_score+"<br>Win";
 
 		}
 		///// lose /////
 		if (my_move == "rock" && c_move == "paper"){
-			board.innerHTML = "<h3>Lose</h3>"
+			c_score+=1;
+			board.innerHTML = my_score+" - "+c_score+"<br>Lose";
+
 
 		}
 		else if(my_move == "paper" && c_move == "scessor"){
-			board.innerHTML = "<h3>Lose</h3>"
+			c_score+=1;
+			board.innerHTML = my_score+" - "+c_score+"<br>Lose";
 
 		}
 		else if( my_move == "scessor" && c_move == "rock"){
-			board.innerHTML = "<h3>Lose</h3>"
+			c_score+=1;
+			board.innerHTML = my_score+" - "+c_score+"<br>Lose";	
 
 		}
 		setTimeout(()=>{
-			board.innerHTML="<h3></h3>"
-		let me = document.querySelector('.me').innerHTML="<img src='start.png'>"
-
-		},1800)
+			board.innerHTML = my_score+" - "+c_score;
+		},1500)
+		
 	}
 </script>
 </body>
